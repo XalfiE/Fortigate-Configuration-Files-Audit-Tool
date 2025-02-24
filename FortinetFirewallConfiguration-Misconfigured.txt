@@ -1,0 +1,114 @@
+# Full Fortinet Firewall Configuration with Security Misconfigurations
+# WARNING: This configuration is intentionally insecure for testing purposes
+
+# 1. Interface Configuration (Misconfigured)
+config system interface
+    edit "port1"
+        set mode static
+        set ip 0.0.0.0  # No proper WAN IP
+        set allowaccess ALL  # Allows unrestricted external access
+    next
+    edit "port2"
+        set ip 192.168.1.1 255.255.255.0
+        set allowaccess ALL  # Allows external access from LAN
+    next
+end
+
+# 2. Firewall Policy (Misconfigured)
+config firewall policy
+    edit 1
+        set name "Allow-All-Traffic"
+        set srcintf "any"
+        set dstintf "any"
+        set srcaddr "all"
+        set dstaddr "all"
+        set action accept
+        set schedule "always"
+        set service "ALL"
+        set nat enable
+    next
+end
+
+# 3. Intrusion Prevention System (IPS Disabled)
+config ips sensor
+    edit "No_IPS"
+        set status disable  # IPS turned off, no attack protection
+    next
+end
+
+# 4. Application Control (Allow All Apps)
+config application list
+    edit "Allow_All_Apps"
+        set status disable  # No control over applications
+    next
+end
+
+# 5. Web Filtering (Disabled)
+config webfilter profile
+    edit "No_Filter"
+        set status disable  # Users can access malicious sites
+    next
+end
+
+# 6. VPN Configuration (Weak Security)
+config vpn ssl settings
+    set port 80  # Uses unencrypted HTTP instead of HTTPS
+    set tunnel-ip-pools "SSLVPN_TUNNEL_ADDR1"
+    set authentication "none"  # No authentication required
+end
+
+# 7. Data Loss Prevention (DLP Disabled)
+config dlp sensor
+    edit "No_DLP"
+        set status disable  # No data loss protection
+    next
+end
+
+# 8. SD-WAN Configuration (Disabled)
+config system virtual-wan-link
+    set status disable  # No load balancing, single point of failure
+end
+
+# 9. Logging (Disabled - No Record of Events)
+config log setting
+    set status disable  # No logging, security incidents go unnoticed
+end
+
+# 10. User Authentication (Weak Credentials Allowed)
+config user local
+    edit "admin"
+        set type password
+        set passwd "12345"  # Weak password, easy to brute-force
+    next
+end
+
+# 11. Open Management Services (Remote Access Risk)
+config system global
+    set admin-sport 8080  # Uses non-standard insecure port
+    set admin-server-cert "self-signed"  # Uses default, untrusted certificate
+end
+
+# 12. Unrestricted SNMP Community (Leaking Network Data)
+config system snmp community
+    edit 1
+        set name "public"
+        set query-v1-status enable  # Allows SNMP v1 (insecure)
+        set query-v2c-status enable  # Allows SNMP v2c (no encryption)
+    next
+end
+
+# 13. No ARP Inspection (Allows Spoofing)
+config system arp-table
+    set status disable  # ARP spoofing attacks possible
+end
+
+# 14. No DHCP Snooping (MITM Attacks Possible)
+config system dhcp server
+    edit 1
+        set interface "port2"
+        set status enable
+        set lease-time 86400
+        set dns-server1 8.8.8.8
+        set default-gateway 192.168.1.1
+    next
+end
