@@ -38,3 +38,6 @@ etc
 
 🔒 **Secure your FortiGate firewall with confidence!**  
 💡 **Contributions & feedback are welcome!** 🚀
+
+Building cool things in tech ☁️ | Open-source & security 🚀 | Fuel my work ☕ → https://www.buymeacoffee.com/alfie
+
