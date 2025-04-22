@@ -39,5 +39,8 @@ etc
 🔒 **Secure your FortiGate firewall with confidence!**  
 💡 **Contributions & feedback are welcome!** 🚀
 
-Building cool things in tech ☁️ | Open-source & security 🚀 | Fuel my work ☕ → https://www.buymeacoffee.com/alfie
+### ☕ Support My Work
+
+[![GitHub Sponsors](https://img.shields.io/badge/Sponsor%20on-GitHub-ff4081?style=for-the-badge&logo=github)](https://github.com/sponsors/Xalfie)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-orange?style=for-the-badge&logo=buy-me-a-coffee)](https://www.buymeacoffee.com/xalfie)
 
