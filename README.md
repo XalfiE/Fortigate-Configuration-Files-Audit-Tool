@@ -37,7 +37,7 @@ etc
 ---
 
  **Secure your FortiGate firewall with confidence!**  
-**Contributions & feedback are welcome!** 🚀
+**Contributions & feedback are welcome!** 
 
 ###  Support My Work
 
